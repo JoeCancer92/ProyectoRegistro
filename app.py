@@ -52,6 +52,12 @@ def adjunto_dashboard():
         return render_template('adjunto_dashboard.html', usuario=usuario)
     else:
         return redirect(url_for('login'))
+    
+    # Ruta para cerrar sesión
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
 
 # Ruta para probar la conexión a la base de datos
 @app.route('/test_db')

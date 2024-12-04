@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrador - Sistema Gestión MSB</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        .section { display: none; }
+        .active-section { display: block; }
+        .navbar {
+            width: 100%;
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-custom">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="font-weight: 600; color: #1a237e;">Sistema Gestión MSB</a>
+            <div class="ml-auto">
+                <span class="navbar-text" style="font-weight: 600; color: #1a237e;">
+                    Bienvenido, {{ usuario }}
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar bg-white p-0 shadow-sm">
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('panel')">Panel</a>
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('informes')">Informes</a>
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('logistica')">Logística</a>
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('asistencia')">Asistencia</a>
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('usuarios')">Usuarios</a>
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('personal')">Personal</a>
+                    <a href="#" class="list-group-item list-group-item-action" onclick="showSection('horarios')">Horarios</a>
+                    <a href="{{ url_for('logout') }}" class="list-group-item list-group-item-action text-danger">Cerrar sesión</a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 offset-md-2 p-4">
+                <!-- Panel Section -->
+                <div id="panel" class="section active-section">
+                    <h4>Dashboard</h4>
+                    <p>Aquí se muestra la información general del sistema.</p>
+                </div>
+
+                <!-- Informes Section -->
+                <div id="informes" class="section">
+                    <h4>Informes</h4>
+                    <div class="card p-4 shadow-sm">
+                        <form method="GET" action="/buscar_informe">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="tipo_informe">Tipo de Informe</label>
+                                    <select id="tipo_informe" name="tipo_informe" class="form-control">
+                                        <option>Personal</option>
+                                        <option>Flota Vehicular</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="sector">Sector</label>
+                                    <select id="sector" name="sector" class="form-control">
+                                        <option>Cavalier</option>
+                                        <option>Beethoven</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="motivo">Motivo</label>
+                                    <select id="motivo" name="motivo" class="form-control">
+                                        <option>Falto</option>
+                                        <option>Descanso médico</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" id="fecha" name="fecha" class="form-control" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Buscar informe</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Logistica Section -->
+                <div id="logistica" class="section">
+                    <h4>Logística</h4>
+                    <div class="card p-4 shadow-sm">
+                        <form method="POST" action="/generar_logistica">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="grupo">Grupo</label>
+                                    <select id="grupo" name="grupo" class="form-control">
+                                        <option>Grupo 1</option>
+                                        <option>Grupo 2</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="turno">Turno</label>
+                                    <select id="turno" name="turno" class="form-control">
+                                        <option>Mañana</option>
+                                        <option>Tarde</option>
+                                        <option>Noche</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" id="fecha" name="fecha" class="form-control" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Generar logística</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Asistencia Section -->
+                <div id="asistencia" class="section">
+                    <h4>Asistencias</h4>
+                    <div class="card p-4 shadow-sm">
+                        <form method="POST" action="/generar_asistencia">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="grupo">Grupo</label>
+                                    <select id="grupo" name="grupo" class="form-control">
+                                        <option>Grupo 1</option>
+                                        <option>Grupo 2</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="turno">Turno</label>
+                                    <select id="turno" name="turno" class="form-control">
+                                        <option>Mañana</option>
+                                        <option>Tarde</option>
+                                        <option>Noche</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" id="fecha" name="fecha" class="form-control" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Generar asistencia</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Usuarios Section -->
+                <div id="usuarios" class="section">
+                    <h4>Usuarios</h4>
+                    <p>Aquí se puede gestionar los usuarios del sistema.</p>
+                </div>
+
+                <!-- Personal Section -->
+                <div id="personal" class="section">
+                    <h4>Personal</h4>
+                    <p>Aquí se puede gestionar la información del personal.</p>
+                </div>
+
+                <!-- Horarios Section -->
+                <div id="horarios" class="section">
+                    <h4>Horarios</h4>
+                    <p>Aquí se puede gestionar los turnos y horarios del personal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active-section'));
+
+            // Mostrar la sección seleccionada
+            document.getElementById(sectionId).classList.add('active-section');
+        }
+    </script>
+</body>
+</html>
