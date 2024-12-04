@@ -1,5 +1,3 @@
-# Crear un archivo llamado 'db.py' para la conexión a la base de datos
-
 from flask_mysqldb import MySQL # type: ignore
 
 mysql = None
