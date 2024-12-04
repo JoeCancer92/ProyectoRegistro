@@ -1,0 +1,14 @@
+# Entorno virtual
+venv/
+
+# Archivos innecesarios generados por el IDE
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos del entorno de tu editor (por ejemplo, VSCode)
+.vscode/
+
+# Archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db

@@ -1,0 +1,52 @@
+/* Archivo CSS llamado 'styles.css' */
+
+body.bg-custom {
+    background-color: #e9eef5;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.card-custom {
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid #d0d4d8;
+    background-color: #ffffff;
+}
+
+.custom-radio .form-check-label {
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.custom-input {
+    border-radius: 5px;
+    border: 1px solid #d0d4d8;
+}
+
+.custom-button {
+    background-color: #0d47a1;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.custom-button:hover {
+    background-color: #0b3a8a;
+}
+
+/* Ajustes adicionales para alineación y espacio */
+.form-group label {
+    color: #0d47a1;
+    font-weight: bold;
+}
+
+.card {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    color: #ffffff;
+}
